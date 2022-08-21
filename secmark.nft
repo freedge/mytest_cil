@@ -1,0 +1,20 @@
+#!/usr/sbin/nft -f
+
+table inet x {
+
+        secmark intranet {
+                "system_u:object_r:intranet_packet_t:s0"
+        }
+
+        chain y {
+                type filter hook input priority -225;
+
+                # label new incoming packets and add to connection
+                ip saddr 10.224.122.1 tcp dport 8080 ct state new meta secmark set "intranet"
+                ct state new ct secmark set meta secmark
+
+                # set label for est/rel packets from connection
+                ct state established,related meta secmark set ct secmark
+        }
+}
+
