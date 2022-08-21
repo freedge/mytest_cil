@@ -1,6 +1,6 @@
 Name:    mytest_cil
 Version: 0.1.0
-Release: 3%{?dist}
+Release: 4%{?dist}
 Summary: mytest cil
 
 License: Apache-2.0 license
