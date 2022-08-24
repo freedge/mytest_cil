@@ -1,0 +1,6 @@
+
+(block exchange-bmc-os-info
+    (blockinherit container)
+
+    (allow process ipmi_device_t ( chr_file (  append getattr ioctl lock open read write )))
+)
